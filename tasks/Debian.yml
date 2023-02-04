@@ -5,11 +5,19 @@
     name: ufw
     state: present
 
-- name: Make sure UFW is enabled and started
-  ansible.builtin.systemd:
-    name: ufw.service
-    state: started
-    enabled: true
-    masked: false
+- name: Copy default ufw config file to /etc/default/ufw
+  copy:
+    src: files/etc/default/ufw
+    dest: /etc/default/ufw
+    mode: '0644'
+    owner: root
+    group: root
+
+#- name: Make sure UFW is enabled and started
+#  ansible.builtin.systemd:
+#    name: ufw.service
+#    state: started
+#    enabled: true
+#    masked: false
 
 ...
